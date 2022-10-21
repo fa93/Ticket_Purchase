@@ -1,8 +1,19 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TicketPurchase.Web;
 using TicketPurchase.Web.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Autofac
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => {
+    containerBuilder.RegisterModule(new WebModule());
+    /*containerBuilder.RegisterModule(new MembershipModule(connectionString, assemblyName));
+    containerBuilder.RegisterModule(new TrainingModule(connectionString, assemblyName));*/
+});
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -35,6 +46,10 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
