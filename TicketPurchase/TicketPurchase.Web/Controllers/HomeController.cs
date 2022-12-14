@@ -20,6 +20,7 @@ namespace TicketPurchase.Web.Controllers
 
         public IActionResult Privacy()
         {
+            _logger.LogInformation("Currently in Privacy Index");
             return View();
         }
 

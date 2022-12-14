@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FirstDemo.Web.Models;
+using Microsoft.AspNetCore.Mvc;
 using TicketPurchase.Web.Areas.Admin.Models;
 
 namespace TicketPurchase.Web.Areas.Admin.Controllers
