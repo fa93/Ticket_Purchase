@@ -1,0 +1,91 @@
+﻿@model TicketEditModel
+@{
+    ViewData["Title"] = "Edit Ticket Info";
+    ViewData["PageNav"] = "Edit";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/adminLTE/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+}
+<div class="container-fluid">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Ticket Edit Form</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form" asp-controller="Ticket" asp-action="Edit" method="post" asp-antiforgery="true">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="card-body">
+                         <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group">
+                            <label for="name">Customer Name</label>
+                            <input type="text" class="form-control" asp-for="CustomerName" id="name" placeholder="Enter name">
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Customer Address</label>
+                            <input type="text" class="form-control" asp-for="CustomerAddress" id="address" placeholder="Enter address">
+                            <span asp-validation-for="CustomerAddress" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="seat_number">Seat Number</label>
+                            <input type="text" class="form-control" asp-for="SeatNumber" id="seat_number" placeholder="Enter seat number">
+                            <span asp-validation-for="SeatNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Ticket Price</label>
+                            <input type="number" class="form-control" asp-for="TicketPrice" id="price" placeholder="Enter price">
+                            <span asp-validation-for="TicketPrice" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="bus_number">Bus Number</label>
+                            <input type="text" class="form-control" asp-for="BusNumber" id="bus_number" placeholder="Enter bus number">
+                            <span asp-validation-for="BusNumber" class="text-danger"></span>
+                        </div>
+                        <!-- Date and time -->
+                        <div class="form-group">
+                            <label>Onboarding Time:</label>
+                            <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" asp-for="OnboardingTime" id="datetime" data-target="#reservationdatetime" />
+                                <div class="input-group-append" data-target="#reservationdatetime" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                                <span asp-validation-for="OnboardingTime" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </div>
+        <!--/.col (left) -->
+    </div>
+    <!-- /.row -->
+</div><!-- /.container-fluid -->
+
+@section Scripts
+{
+    
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    @*<script>
+        $(function () {
+            var html = "<div class='form-group'><label>Topic Title</label><input type='text' class='form-control' name='TopicTitle'><br/><label>Topic Description</label><input type='text' class='form-control' name='TopicDescription'></div>";
+            $("#addTopic").click(function(){
+                $("#form").append(html);
+            });
+        });
+        
+    </script>*@
+}
